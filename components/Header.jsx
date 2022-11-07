@@ -18,13 +18,13 @@ const Header = () => {
       <ul className={css.menu}>
         <li>Home</li>
         <li>Menu</li>
-        <li>Content</li>
+        <li>Contact</li>
       </ul>
 
       {/* Rithtside */}
       <div className={css.rightside}>
         <div className={css.cart}>
-          <Badge badgeContent={badge} color="error">
+          <Badge badgeContent={badge} color="primary">
             <ShoppingBagOutlined className={css.icon} />
           </Badge>
         </div>
