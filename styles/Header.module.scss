@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+  .menu {
+    list-style: none;
+    padding-left: 0;
+    li {
+      display: inline-block;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+  }
+  .rightside {
+    display: flex;
+    align-items: center;
+    .cart {
+      .icon {
+        font-size: 2rem;
+      }
+    }
+  }
+}
