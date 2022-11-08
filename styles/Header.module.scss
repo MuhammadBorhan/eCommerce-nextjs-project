@@ -1,41 +1,12 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  .logo {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-  .menu {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding-left: 0;
-    li {
-      display: inline-block;
-      padding: 0 15px;
+.navbar_menu {
+  li {
+    a {
+      background-color: transparent;
       font-size: 1.2rem;
       &:hover {
-        cursor: pointer;
-        color: blue;
+        color: orangered;
+        font-weight: 700;
         transform: scale(1.2);
-        font-weight: bold;
-      }
-    }
-  }
-  .rightside {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    .cart {
-      .icon {
-        font-size: 2rem;
-        cursor: pointer;
       }
     }
   }
