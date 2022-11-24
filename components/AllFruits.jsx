@@ -1,37 +1,64 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
-import datas from "../database/data.json";
+import { useQuery } from "react-query";
+// import datas from "../database/data.json";
+import { getAllProduct } from "../library/helper";
 
 const AllFruits = () => {
-  // const [datas, setDatas] = useState([]);
+  const { isLoading, isError, data, error } = useQuery(
+    "products",
+    getAllProduct
+  );
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/users")
-  //     .then((res) => res.json())
-  //     .then((data) => setDatas(data));
-  // }, []);
+  if (isLoading) {
+    return (
+      <h1 className="text-center py-5 text-3xl text-red-500">
+        Employee Loading...
+      </h1>
+    );
+  } else if (isError) {
+    return <p>Got Error {error}</p>;
+  }
+
+  /*   const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/products")
+      .then((res) => res.json())
+      .then((data) => setDatas(data));
+  }, []); */
 
   return (
     <div>
       <div className="text-center">
-        <h3>Get All Fruits : {datas.length}</h3>
-        <p>We are delivering any kind of fruit</p>
+        <h3 className="text-2xl font-bold">Get All Fruits : {data.length}</h3>
+        <p className="text-slate-500 my-2 font-bold">
+          We are delivering any kind of fruit
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3">
-        {datas.map((data) => {
-          console.log(data);
+        {data.map((dt) => {
+          console.log(dt);
           return (
             <div
-              key={data.id}
+              key={dt.id}
               className="flex flex-col items-center text-center gap-3 p-6"
             >
-              <img src={data.image} alt="fruit" width={200} height={200} />
-              <p>${data.price[1]}</p>
-              <p>{data.name}</p>
+              <Link href={`/fruit/${dt.name}`}>
+                {" "}
+                <img
+                  className="cursor-pointer"
+                  src={dt.image}
+                  alt="fruit"
+                  width={200}
+                  height={200}
+                />
+              </Link>
+              <p>${dt.price[1]}</p>
+              <p>{dt.name}</p>
               <p>
-                {data.des.length > 100
-                  ? data.des.slice(0, 100) + " . . ."
-                  : data.des}
+                {dt.des.length > 100 ? dt.des.slice(0, 100) + " . . ." : dt.des}
               </p>
             </div>
           );
