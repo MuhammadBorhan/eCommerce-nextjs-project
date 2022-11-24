@@ -12,8 +12,8 @@ const AllFruits = () => {
 
   if (isLoading) {
     return (
-      <h1 className="text-center py-5 text-3xl text-red-500">
-        Employee Loading...
+      <h1 className="text-center py-5 font-bold text-3xl text-blue-500">
+        Products Loading...
       </h1>
     );
   } else if (isError) {

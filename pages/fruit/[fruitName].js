@@ -41,17 +41,26 @@ const SingleFruit = () => {
               </p>
               <div className="flex items-center gap-4">
                 <p
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer `}
+                  onClick={() => setSize(0)}
+                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                    size === 0 ? "bg-orange-600 text-white" : ""
+                  }`}
                 >
                   Small
                 </p>
                 <p
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer `}
+                  onClick={() => setSize(1)}
+                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                    size === 1 ? "bg-orange-600 text-white" : ""
+                  }`}
                 >
                   Medium
                 </p>
                 <p
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer `}
+                  onClick={() => setSize(2)}
+                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                    size === 2 ? "bg-orange-600 text-white" : ""
+                  }`}
                 >
                   Large
                 </p>
