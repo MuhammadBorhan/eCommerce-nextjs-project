@@ -1,5 +1,5 @@
 import Head from "next/head";
-import About from "../components/About";
+import AllFruits from "../components/AllFruits";
 import Hero from "../components/Hero";
 import Layout from "../components/Layout";
 import Service from "../components/Service";
@@ -17,8 +17,8 @@ export default function Home() {
         <main>
           <Hero />
           <Service />
+          <AllFruits />
         </main>
-        {/* <About /> */}
       </div>
     </Layout>
   );
