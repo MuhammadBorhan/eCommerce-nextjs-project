@@ -39,7 +39,7 @@ const SingleFruit = () => {
             </p>
             <p className="text-5xl font-bold">
               <span className="text-orange-600">$</span>
-              {posts.price}
+              {posts?.price ? posts.price[size] : posts?.price}
             </p>
 
             {/* Size Section */}
