@@ -25,7 +25,7 @@ const SingleFruit = () => {
   }, []);
   return (
     <Layout>
-      <div style={{ height: "76vh" }}>
+      <div className="min-h-screen">
         <div className="py-8 px-12 flex flex-col md:flex-row items-center">
           <div>
             <img src={posts.image} height={400} width={400} />
@@ -44,13 +44,13 @@ const SingleFruit = () => {
 
             {/* Size Section */}
             <div className="flex items-center mt-6 mb-4 gap-8">
-              <p className="text-3xl font-bold">
+              <p className="text-xl md:text-3xl flex items-center font-bold">
                 Size <ArrowRight />{" "}
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 mdd:gap-4">
                 <p
                   onClick={() => setSize(0)}
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                  className={`text-orange-600 px-4 md:px-6 py-1 md:py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
                     size === 0 ? "bg-orange-600 text-white" : ""
                   }`}
                 >
@@ -58,7 +58,7 @@ const SingleFruit = () => {
                 </p>
                 <p
                   onClick={() => setSize(1)}
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                  className={`text-orange-600 px-4 md:px-6 py-1 md:py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
                     size === 1 ? "bg-orange-600 text-white" : ""
                   }`}
                 >
@@ -66,7 +66,7 @@ const SingleFruit = () => {
                 </p>
                 <p
                   onClick={() => setSize(2)}
-                  className={`text-orange-600 px-6 py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
+                  className={`text-orange-600 px-4 md:px-6 py-1 md:py-2 rounded-full border-orange-600 border font-bold hover:bg-orange-600 hover:text-white hover:cursor-pointer ${
                     size === 2 ? "bg-orange-600 text-white" : ""
                   }`}
                 >
@@ -84,11 +84,11 @@ const SingleFruit = () => {
                     if (quantity > 1) setQuantity(quantity - 1);
                   }}
                 >
-                  <ArrowLeft className="text-6xl cursor-pointer" />
+                  <ArrowLeft className="text-6xl cursor-pointer text-orange-600" />
                 </span>
                 <span className="text-3xl">{quantity}</span>
                 <span onClick={() => setQuantity(quantity + 1)}>
-                  <ArrowRight className="text-6xl cursor-pointer" />
+                  <ArrowRight className="text-6xl cursor-pointer text-orange-600" />
                 </span>
               </div>
             </div>
