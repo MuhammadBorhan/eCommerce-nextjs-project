@@ -4,13 +4,14 @@ import Logo from "../assets/next.png";
 import { ShoppingCart } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
   const [badge, setBadge] = useState(2);
   const menuItem = (
     <>
       <li>
-        <a>Home</a>
+        <Link href={"/"}>Home</Link>
       </li>
       <li>
         <a>Menu</a>

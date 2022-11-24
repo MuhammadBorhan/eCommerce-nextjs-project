@@ -39,13 +39,12 @@ const AllFruits = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3">
         {data.map((dt) => {
-          console.log(dt);
           return (
             <div
               key={dt.id}
               className="flex flex-col items-center text-center gap-3 p-6"
             >
-              <Link href={`/fruit/${dt.name}`}>
+              <Link href={`./fruit/${dt._id}`}>
                 {" "}
                 <img
                   className="cursor-pointer"
