@@ -39,26 +39,25 @@ const AllFruits = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3">
         {data.map((dt) => {
+          const { _id, image, price, name, des } = dt;
           return (
             <div
-              key={dt.id}
+              key={_id}
               className="flex flex-col items-center text-center gap-3 p-6"
             >
-              <Link href={`./fruit/${dt._id}`}>
+              <Link href={`./fruit/${_id}`}>
                 {" "}
                 <img
-                  className="cursor-pointer"
-                  src={dt.image}
+                  className="cursor-pointer)"
+                  src={image}
                   alt="fruit"
                   width={200}
                   height={200}
                 />
               </Link>
-              <p>${dt.price[1]}</p>
-              <p>{dt.name}</p>
-              <p>
-                {dt.des.length > 100 ? dt.des.slice(0, 100) + " . . ." : dt.des}
-              </p>
+              <p>${price[1]}</p>
+              <p>{name}</p>
+              <p>{des.length > 100 ? des.slice(0, 100) + " . . ." : des}</p>
             </div>
           );
         })}
