@@ -17,13 +17,12 @@ const Header = () => {
   if (isLoading) {
     return (
       <h1 className="text-center py-5 font-bold text-3xl text-blue-500">
-        Products Loading...
+        Loading...
       </h1>
     );
   } else if (isError) {
     return <p>Got Error {error}</p>;
   }
-
   // const [badge, setBadge] = useState(2);
   const menuItem = (
     <>
@@ -76,10 +75,11 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Badge badgeContent={data.length} color="primary">
-          <ShoppingCart className="cursor-pointer" />
-        </Badge>
-        <div>{/* getAllCartProduct */}</div>
+        <Link href={"/cart"}>
+          <Badge badgeContent={data.length} color="primary">
+            <ShoppingCart className="cursor-pointer" />
+          </Badge>
+        </Link>
       </div>
     </div>
   );
