@@ -5,9 +5,26 @@ import { ShoppingCart } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { useState } from "react";
 import Link from "next/link";
+import { getAllCartProduct } from "../library/helper";
+import { useQuery } from "react-query";
 
 const Header = () => {
-  const [badge, setBadge] = useState(2);
+  const { isLoading, isError, data, error } = useQuery(
+    "buyproduct",
+    getAllCartProduct
+  );
+
+  if (isLoading) {
+    return (
+      <h1 className="text-center py-5 font-bold text-3xl text-blue-500">
+        Products Loading...
+      </h1>
+    );
+  } else if (isError) {
+    return <p>Got Error {error}</p>;
+  }
+
+  // const [badge, setBadge] = useState(2);
   const menuItem = (
     <>
       <li>
@@ -59,9 +76,10 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Badge badgeContent={badge} color="primary">
+        <Badge badgeContent={data.length} color="primary">
           <ShoppingCart className="cursor-pointer" />
         </Badge>
+        <div>{/* getAllCartProduct */}</div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import BuyProduct from "../model/buyproduct";
 import Products from "../model/products";
 
 export async function getProducts(req, res) {
@@ -10,11 +11,22 @@ export async function getProducts(req, res) {
   }
 }
 
+// for buy product
+export async function getBuyProducts(req, res) {
+  try {
+    const buyproduct = await BuyProduct.find({});
+    if (!buyproduct) return res.status(404).json({ error: "Data not found" });
+    res.status(200).json(buyproduct);
+  } catch (error) {
+    res.status(404).json({ error: "Error while fetching data" });
+  }
+}
+
 export async function getProduct(req, res) {
   try {
-    const { productId } = req.query;
-    if (productId) {
-      const product = await Products.findById(productId);
+    const { productId: productsId } = req.query;
+    if (productsId) {
+      const product = await Products.findById(productsId);
       res.status(200).json(product);
     }
     return res.status(404).json({ error: "User Not Selected..." });
@@ -30,6 +42,21 @@ export async function createProduct(req, res) {
       return res.status(404).json({ error: "data not provided..!!!" });
     }
     Products.create(datas, (err, data) => {
+      return res.status(201).json(data);
+    });
+  } catch (error) {
+    return res.status(404).json({ error });
+  }
+}
+
+// for create new buyproduct
+export async function createBuyProduct(req, res) {
+  try {
+    const datas = req.body;
+    if (!datas) {
+      return res.status(404).json({ error: "data not provided..!!!" });
+    }
+    BuyProduct.create(datas, (err, data) => {
       return res.status(201).json(data);
     });
   } catch (error) {

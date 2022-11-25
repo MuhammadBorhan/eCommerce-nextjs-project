@@ -1,28 +1,46 @@
-import {
-  ArrowBack,
-  ArrowBackIos,
-  ArrowLeft,
-  ArrowRight,
-} from "@mui/icons-material";
+import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout.jsx";
+import { useMutation, useQueryClient } from "react-query";
+import { createCartProduct, getAllCartProduct } from "../../library/helper.js";
+// import { createProduct, getAllProduct } from "../../library/helper.js";
 
 const SingleFruit = () => {
   const [size, setSize] = useState(1);
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
-  const { productId } = router.query;
+  const { productsId: productsId } = router.query;
 
   const [posts, setPosts] = useState({});
+  // console.log(size, quantity, posts.price[size], posts.image, posts.name);
   //   const { image, name, price, des } = posts;
-  console.log(posts);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/products/${productId}`)
+    fetch(`http://localhost:3000/api/products/${productsId}`)
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
+
+  const queryClient = useQueryClient();
+
+  const addMutation = useMutation(createCartProduct, {
+    onSuccess: () => {
+      queryClient.prefetchQuery("buyproduct", getAllCartProduct);
+    },
+  });
+
+  const AddToCart = () => {
+    let { image, name, des } = posts;
+    const model = {
+      name,
+      image,
+      des,
+      size,
+      quantity,
+    };
+    addMutation.mutate(model);
+  };
   return (
     <Layout>
       <div className="min-h-screen">
@@ -92,7 +110,10 @@ const SingleFruit = () => {
                 </span>
               </div>
             </div>
-            <button className="px-4 py-2 bg-orange-600 text-xl font-bold rounded-full text-white mt-2">
+            <button
+              onClick={AddToCart}
+              className="px-4 py-2 bg-orange-600 text-xl font-bold rounded-full text-white mt-2"
+            >
               Add To Cart
             </button>
           </div>
