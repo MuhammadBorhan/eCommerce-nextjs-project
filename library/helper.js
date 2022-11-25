@@ -1,5 +1,4 @@
 const BASE_URL = "http://localhost:3000";
-const CART_URL = "http://localhost:3000";
 
 // all products
 export const getAllProduct = async () => {
@@ -53,4 +52,14 @@ export const createCartProduct = async (datas) => {
   } catch (error) {
     return error;
   }
+};
+
+// delete user form cart
+export const deleteCartProduct = async (cartId) => {
+  const Options = {
+    method: "DELETE",
+  };
+  const res = await fetch(`${BASE_URL}/api/buyproduct/${cartId}`, Options);
+  const result = await res.json();
+  return result;
 };

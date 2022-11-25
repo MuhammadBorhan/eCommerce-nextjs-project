@@ -27,16 +27,18 @@ const Header = () => {
   const menuItem = (
     <>
       <li>
-        <Link href={"/"}>Home</Link>
+        <Link className="text-orange-600" href={"/"}>
+          Home
+        </Link>
       </li>
       <li>
-        <a>Menu</a>
+        <a className="text-orange-600">Menu</a>
       </li>
       <li>
-        <a>Contact</a>
+        <a className="text-orange-600">Contact</a>
       </li>
       <li>
-        <a>About</a>
+        <a className="text-orange-600">About</a>
       </li>
     </>
   );
@@ -77,7 +79,7 @@ const Header = () => {
       <div className="navbar-end">
         <Link href={"/cart"}>
           <Badge badgeContent={data.length} color="primary">
-            <ShoppingCart className="cursor-pointer" />
+            <ShoppingCart className="cursor-pointer text-orange-600" />
           </Badge>
         </Link>
       </div>

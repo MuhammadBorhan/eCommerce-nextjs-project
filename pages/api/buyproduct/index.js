@@ -1,5 +1,9 @@
 import connectMongo from "../../../database/connect";
-import { createBuyProduct, getBuyProducts } from "../../../database/controller";
+import {
+  createBuyProduct,
+  deleteCartItem,
+  getBuyProducts,
+} from "../../../database/controller";
 
 export default async function handler(req, res) {
   connectMongo().catch(() =>
@@ -22,8 +26,8 @@ export default async function handler(req, res) {
       res.status(200).json({ method, name: "put request" });
       break;
     case "DELETE":
-      //   deleteProduct(req, res);
-      res.status(200).json({ method, name: "delete request" });
+      deleteCartItem(req, res);
+      // res.status(200).json({ method, name: "delete request" });
       break;
     default:
       res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);

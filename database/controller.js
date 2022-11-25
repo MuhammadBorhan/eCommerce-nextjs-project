@@ -94,3 +94,19 @@ export async function deleteProduct(req, res) {
       .json({ error: "Error while deleting the data...!!" });
   }
 }
+
+// deleter for add to cart
+export async function deleteCartItem(req, res) {
+  try {
+    const { cartId } = req.query;
+    if (cartId) {
+      const user = await BuyProduct.findByIdAndDelete(cartId);
+      res.status(200).json({ deleted: user });
+    }
+    return res.status(404).json({ error: "User not selected..." });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ error: "Error while deleting the data...!!" });
+  }
+}
