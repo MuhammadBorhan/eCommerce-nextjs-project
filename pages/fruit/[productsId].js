@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Layout from "../../components/Layout.jsx";
 import { useMutation, useQueryClient } from "react-query";
 import { createCartProduct, getAllCartProduct } from "../../library/helper.js";
-// import { createProduct, getAllProduct } from "../../library/helper.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SingleFruit = () => {
   const [size, setSize] = useState(1);
@@ -40,6 +41,7 @@ const SingleFruit = () => {
       quantity,
     };
     addMutation.mutate(model);
+    toast.success(`${name} added successfully done..!`);
   };
   return (
     <Layout>
@@ -118,6 +120,7 @@ const SingleFruit = () => {
             </button>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </Layout>
   );
