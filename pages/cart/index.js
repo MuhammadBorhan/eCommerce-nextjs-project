@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import { deleteCartProduct, getAllCartProduct } from "../../library/helper";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Delete, Remove } from "@mui/icons-material";
 
 const index = () => {
   // fetch cart item in the Add-To-Cart page
@@ -35,7 +36,7 @@ const index = () => {
   const price = [120, 150, 190];
   return (
     <Layout>
-      <div>
+      <div className="grid md:grid-cols-2 gap-x-16">
         <div>
           {data?.map((item) => {
             const { _id, name, image, des, quantity, size } = item;
@@ -83,18 +84,29 @@ const index = () => {
 
                     <button
                       onClick={() => handleRemove(_id)}
-                      className="flex mt-4 text-orange-600 font-bold text-xl"
+                      className="flex items-center mt-4 text-red-500 font-bold"
                     >
                       Remove
+                      <Delete />
                     </button>
                   </div>
                 </div>
               </div>
             );
           })}
-          <ToastContainer />
         </div>
-        <div>right side</div>
+        <div className="fixed right-1/4 top-24 z-10 hidden lg:block">
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ToastContainer />
       </div>
     </Layout>
   );
