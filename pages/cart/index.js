@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Layout from "../../components/Layout";
 import { deleteCartProduct, getAllCartProduct } from "../../library/helper";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const index = () => {
   const { isLoading, isError, data, error } = useQuery(
@@ -19,20 +21,13 @@ const index = () => {
     return <p>Got Error {error}</p>;
   }
 
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/buyproduct")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data));
-  // }, []);
-
   const queryClient = useQueryClient();
   const handleRemove = async (productId) => {
     if (productId) {
       await deleteCartProduct(productId);
       await queryClient.prefetchQuery("buyproduct", getAllCartProduct);
     }
+    toast.success("Delete success...!!!");
   };
   return (
     <Layout>
@@ -50,6 +45,19 @@ const index = () => {
                   <p className="text-slate-500 font-bold my-2">
                     {des?.length > 100 ? des.slice(0, 100) + " . . ." : des}
                   </p>
+                  {size === "0" ? (
+                    <p className="text-xl text-indigo-600 font-bold font-mono">
+                      small
+                    </p>
+                  ) : size === "1" ? (
+                    <p className="text-xl text-indigo-600 font-bold font-mono">
+                      Medium
+                    </p>
+                  ) : (
+                    <p className="text-xl text-indigo-600 font-bold font-mono">
+                      Large
+                    </p>
+                  )}
                   <p className="text-xl font-bold">Quantity: {quantity}</p>
                   <button
                     onClick={() => handleRemove(_id)}
@@ -62,6 +70,7 @@ const index = () => {
             </div>
           );
         })}
+        <ToastContainer />
       </div>
     </Layout>
   );
