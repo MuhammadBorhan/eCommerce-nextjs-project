@@ -55,11 +55,14 @@ export const createCartProduct = async (datas) => {
 };
 
 // delete user form cart
-export const deleteCartProduct = async (cartId) => {
+export const deleteCartProduct = async (productId) => {
   const Options = {
     method: "DELETE",
   };
-  const res = await fetch(`${BASE_URL}/api/buyproduct/${cartId}`, Options);
+  const res = await fetch(
+    `${BASE_URL}/api/buyproduct?productId=${productId}`,
+    Options
+  );
   const result = await res.json();
   return result;
 };

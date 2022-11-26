@@ -98,9 +98,9 @@ export async function deleteProduct(req, res) {
 // deleter for add to cart
 export async function deleteCartItem(req, res) {
   try {
-    const { cartId } = req.query;
-    if (cartId) {
-      const user = await BuyProduct.findByIdAndDelete(cartId);
+    const { productId } = req.query;
+    if (productId) {
+      const user = await BuyProduct.findByIdAndDelete(productId);
       res.status(200).json({ deleted: user });
     }
     return res.status(404).json({ error: "User not selected..." });

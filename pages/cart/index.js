@@ -1,6 +1,7 @@
-import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Layout from "../../components/Layout";
-import { getAllCartProduct } from "../../library/helper";
+import { deleteCartProduct, getAllCartProduct } from "../../library/helper";
 
 const index = () => {
   const { isLoading, isError, data, error } = useQuery(
@@ -18,8 +19,20 @@ const index = () => {
     return <p>Got Error {error}</p>;
   }
 
-  const handleRemove = (cartId) => {
-    console.log(cartId);
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/api/buyproduct")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data));
+  // }, []);
+
+  const queryClient = useQueryClient();
+  const handleRemove = async (productId) => {
+    if (productId) {
+      await deleteCartProduct(productId);
+      await queryClient.prefetchQuery("buyproduct", getAllCartProduct);
+    }
   };
   return (
     <Layout>
