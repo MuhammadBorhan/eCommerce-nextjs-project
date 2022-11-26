@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const index = () => {
+  // fetch cart item in the Add-To-Cart page
   const { isLoading, isError, data, error } = useQuery(
     "buyproduct",
     getAllCartProduct
@@ -21,6 +22,7 @@ const index = () => {
     return <p>Got Error {error}</p>;
   }
 
+  // Remove cart item from Add-To-Cart page
   const queryClient = useQueryClient();
   const handleRemove = async (productId) => {
     if (productId) {
@@ -29,6 +31,8 @@ const index = () => {
     }
     toast.success("Delete success...!!!");
   };
+
+  const price = [2, 2.4, 2.7];
   return (
     <Layout>
       <div>
@@ -58,7 +62,16 @@ const index = () => {
                       Large
                     </p>
                   )}
+                  <p className="text-2xl font-bold font-mono">
+                    <span className="text-orange-600">$</span>
+                    {size === "0"
+                      ? price[0]
+                      : size === "1"
+                      ? price[1]
+                      : price[2]}
+                  </p>
                   <p className="text-xl font-bold">Quantity: {quantity}</p>
+
                   <button
                     onClick={() => handleRemove(_id)}
                     className="flex mt-6 text-orange-600 font-bold text-xl"
