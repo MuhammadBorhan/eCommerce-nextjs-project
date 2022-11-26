@@ -55,8 +55,10 @@ const AllFruits = () => {
                   height={200}
                 />
               </Link>
-              <p>${price[1]}</p>
-              <p>{name}</p>
+              <p className="text-xl font-bold">Tk {price[1]}</p>
+              <p className="font-bold text-xl text-indigo-600 font-mono">
+                {name}
+              </p>
               <p>{des.length > 100 ? des.slice(0, 100) + " . . ." : des}</p>
             </div>
           );

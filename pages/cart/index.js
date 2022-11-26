@@ -32,7 +32,7 @@ const index = () => {
     toast.success("Delete success...!!!");
   };
 
-  const price = [2, 2.4, 2.7];
+  const price = [120, 150, 190];
   return (
     <Layout>
       <div>
@@ -46,9 +46,9 @@ const index = () => {
                 </div>
                 <div className="px-12">
                   <h2 className="text-2xl font-bold">{name}</h2>
-                  <p className="text-slate-500 font-bold my-2">
+                  {/* <p className="text-slate-500 font-bold my-2">
                     {des?.length > 100 ? des.slice(0, 100) + " . . ." : des}
-                  </p>
+                  </p> */}
                   {size === "0" ? (
                     <p className="text-xl text-indigo-600 font-bold font-mono">
                       small
@@ -63,7 +63,7 @@ const index = () => {
                     </p>
                   )}
                   <p className="text-2xl font-bold font-mono">
-                    <span className="text-orange-600">$</span>
+                    <span className="text-orange-600">Tk</span>
                     {size === "0"
                       ? price[0]
                       : size === "1"
@@ -71,10 +71,11 @@ const index = () => {
                       : price[2]}
                   </p>
                   <p className="text-xl font-bold">Quantity: {quantity}</p>
+                  <p>Total: {parseInt(quantity) * parseFloat(price)}</p>
 
                   <button
                     onClick={() => handleRemove(_id)}
-                    className="flex mt-6 text-orange-600 font-bold text-xl"
+                    className="flex mt-4 text-orange-600 font-bold text-xl"
                   >
                     Remove
                   </button>

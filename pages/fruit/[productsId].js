@@ -58,7 +58,7 @@ const SingleFruit = () => {
                 : posts.des}
             </p>
             <p className="text-5xl font-bold">
-              <span className="text-orange-600">$</span>
+              <span className="text-orange-600">Tk </span>
               {posts?.price ? posts.price[size] : posts?.price}
             </p>
 
