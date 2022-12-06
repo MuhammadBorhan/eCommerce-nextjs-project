@@ -5,6 +5,7 @@ import { deleteCartProduct, getAllCartProduct } from "../../library/helper";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Delete, Remove } from "@mui/icons-material";
+import Link from "next/link";
 
 const index = () => {
   // fetch cart item in the Add-To-Cart page
@@ -36,7 +37,7 @@ const index = () => {
   const price = [120, 150, 190];
   return (
     <Layout>
-      <div className="p-12 grid grid-cols-1 md:grid-cols-6 gap-2">
+      <div className="p-12 grid grid-cols-1 md:grid-cols-6 gap-4">
         <div className="col-span-4">
           <div className="overflow-x-auto">
             <table className="table w-full">
@@ -116,10 +117,14 @@ const index = () => {
         <div className="col-span-2">
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
+              <h2 className="card-title">Cart Total</h2>
+              <p>Sub Total: Tk</p>
+              <p>Discount: Tk</p>
+              <p>Total: Tk</p>
+              <div className="card-actions justify-end mt-2">
+                <Link href={"/order/id"}>
+                  <button className="btn bg-light w-full">Checkout Now</button>
+                </Link>
               </div>
             </div>
           </div>
