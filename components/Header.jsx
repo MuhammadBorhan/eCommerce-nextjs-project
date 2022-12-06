@@ -69,7 +69,14 @@ const Header = () => {
             {menuItem}
           </ul>
         </div>
-        <Image src={Logo} width={120} height={60} className="cursor-pointer" />
+        <Link href={"/"}>
+          <Image
+            src={Logo}
+            width={120}
+            height={60}
+            className="cursor-pointer "
+          />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className={`menu menu-horizontal p-0 ${css.navbar_menu}`}>
@@ -78,7 +85,7 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <Link href={"/cart"}>
-          <Badge badgeContent={data.length} color="primary">
+          <Badge badgeContent={data.length} color="error">
             <ShoppingCart className="cursor-pointer text-orange-600" />
           </Badge>
         </Link>

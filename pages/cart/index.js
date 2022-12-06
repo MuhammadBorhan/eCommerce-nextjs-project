@@ -36,7 +36,98 @@ const index = () => {
   const price = [120, 150, 190];
   return (
     <Layout>
-      <div className="grid md:grid-cols-2 gap-x-16">
+      <div className="p-12 grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="col-span-4">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th className="text-1xl">Name</th>
+                  <th className="text-1xl">Size</th>
+                  <th className="text-1xl">Price</th>
+                  <th className="text-1xl">Quantity</th>
+                  <th className="text-1xl">Total</th>
+                  <th className="text-1xl">Cancel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((item) => {
+                  const { _id, name, image, des, quantity, size } = item;
+                  return (
+                    <tr key={_id}>
+                      <th>
+                        <img src={image} height={50} width={50} />
+                      </th>
+                      <td>{name}</td>
+                      <td>
+                        {size === "0" ? (
+                          <p className="text-1xl text-indigo-600 font-bold font-mono">
+                            small
+                          </p>
+                        ) : size === "1" ? (
+                          <p className="text-1xl text-indigo-600 font-bold font-mono">
+                            Medium
+                          </p>
+                        ) : (
+                          <p className="text-1xl text-indigo-600 font-bold font-mono">
+                            Large
+                          </p>
+                        )}
+                      </td>
+                      <td>
+                        <p className="text-1xl font-mono">
+                          <span className="text-orange-600">Tk</span>
+                          {size === "0"
+                            ? price[0]
+                            : size === "1"
+                            ? price[1]
+                            : price[2]}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="text-1xl ">{quantity}</p>
+                      </td>
+                      <td>
+                        <p className="text-1xl  font-mono">
+                          <span className="text-orange-600">Tk</span>
+                          {size === "0"
+                            ? parseInt(quantity) * parseFloat(price[0])
+                            : size === "1"
+                            ? parseInt(quantity) * parseFloat(price[1])
+                            : parseInt(quantity) * parseFloat(price[2])}
+                        </p>
+                      </td>
+                      <td
+                        onClick={() => handleRemove(_id)}
+                        className=" text-red-500 font-bold cursor-pointer"
+                      >
+                        <Delete />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* right side */}
+        <div className="col-span-2">
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ToastContainer />
+      </div>
+      {/*  <div className="grid md:grid-cols-2 gap-x-16">
         <div>
           {data?.map((item) => {
             const { _id, name, image, des, quantity, size } = item;
@@ -48,9 +139,6 @@ const index = () => {
                   </div>
                   <div className="px-12">
                     <h2 className="text-2xl font-bold">{name}</h2>
-                    {/* <p className="text-slate-500 font-bold my-2">
-                    {des?.length > 100 ? des.slice(0, 100) + " . . ." : des}
-                  </p> */}
                     {size === "0" ? (
                       <p className="text-xl text-indigo-600 font-bold font-mono">
                         small
@@ -107,7 +195,7 @@ const index = () => {
           </div>
         </div>
         <ToastContainer />
-      </div>
+      </div> */}
     </Layout>
   );
 };
